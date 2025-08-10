@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ฝึกพูดอะเฟเซีย – รูปแบบมิวสิก</title>
+  <meta name="theme-color" content="#0f1115">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    :root{
+      --bg:#0f1115;--panel:#151821;--card:#1b1f2a;--text:#e8eaf0;--muted:#a3a8b8;--accent:#5ee1a2;--accent2:#4da3ff;--border:#2a2f3b
+    }
+    [data-theme="light"]{
+      --bg:#f6f7fb;--panel:#ffffff;--card:#ffffff;--text:#12131a;--muted:#646b7a;--accent:#1779ff;--accent2:#4da3ff;--border:#e3e6ee
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .app{display:grid;grid-template-columns:260px 1fr;grid-template-rows:1fr 84px;min-height:100vh}
+    .sidebar{background:var(--panel);padding:14px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:12px}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .section{font-size:11px;color:var(--muted);text-transform:uppercase;margin-top:8px;margin-bottom:6px}
+    .langToggle{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+    .langToggle button{flex:1;padding:6px 10px;border:0;background:transparent;color:var(--text);cursor:pointer}
+    .langToggle button.active{background:linear-gradient(135deg,var(--accent2),#9ad1ff);color:#0b0d12;font-weight:700}
+    .themeToggle{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+    .themeToggle button{flex:1;padding:6px 10px;border:0;background:transparent;color:var(--text);cursor:pointer}
+    .themeToggle button.active{background:linear-gradient(135deg,var(--accent),#b7ffd7);color:#0b0d12;font-weight:700}
+    .lesson{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;cursor:pointer}
+    .lesson.active{background:var(--card)}
+    .lesson .title{font-weight:600;font-size:14px}
+    .lesson .sub{font-size:12px;color:var(--muted)}
+    .btn,.chip{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+    .btn.small{padding:6px 10px;font-size:12px}
+    input[type=text], select{width:100%;background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:10px}
+    .content{padding:16px}
+    .header{display:flex;gap:16px;align-items:center}
+    .hgroup{display:flex;flex-direction:column;gap:6px}
+    .title{font-size:22px;font-weight:800}
+    .subtitle{font-size:13px;color:var(--muted)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .toolbar{margin-top:12px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+    .search{display:flex;gap:8px;align-items:center}
+    .table{margin-top:12px;border-top:1px solid var(--border);max-height:52vh;overflow:auto}
+    .row{display:grid;grid-template-columns:56px 1fr 140px;gap:8px;padding:10px 6px;border-bottom:1px solid var(--border);align-items:center}
+    .row.header{color:var(--muted);font-size:12px;text-transform:uppercase;position:sticky;top:0;background:var(--card)}
+    .row.item{cursor:pointer}
+    .row.item.active{background:rgba(77,163,255,.12)}
+    .row .idx{color:var(--muted);font-size:12px}
+    .row .prompt{font-weight:600}
+    .row .lang{font-size:12px;color:var(--muted)}
+    .libraryScroll{max-height:35vh;overflow:auto;border:1px solid var(--border);border-radius:12px;padding:6px}
+    .bottom{grid-column:1/-1;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;padding:10px 14px}
+    .controls2{display:flex;align-items:center;gap:10px}
+    .pill{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--border);border-radius:999px}
+    input[type=range]{accent-color:var(--accent2)}
+    .muted{color:var(--muted)}
+    .hide{display:none}
+    @media (max-width: 880px){
+      .app{grid-template-columns:1fr;grid-template-rows:auto 1fr 84px}
+      .sidebar{grid-row:1;display:flex;flex-direction:row;gap:10px;overflow:auto}
+      .libraryScroll{max-height:none;max-width:40vw}
+    }
+  </style>
+</head>
+<body data-theme="dark">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" id="brand">ฝึกพูดอะเฟเซีย</div>
+
+    <div class="section" id="secLib">คลังบทเรียน</div>
+    <div id="list" class="libraryScroll"></div>
+
+    <div class="section" id="secAdd">เพิ่มบทเรียน</div>
+    <button class="btn small" id="pick">เปิดไฟล์ YAML…</button>
+    <input id="file" type="file" accept=".yaml,.yml" class="hide">
+    <input id="url" type="text" placeholder="วางลิงก์ YAML…">
+    <button class="btn small" id="loadUrl">โหลด</button>
+
+    <div class="section" id="secInterface">ตั้งค่า</div>
+    <div class="langToggle" id="langToggle">
+      <button data-lang="th" class="active">TH</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <div class="themeToggle" id="themeToggle" style="margin-top:8px">
+      <button data-theme="dark" class="active">Dark</button>
+      <button data-theme="light">Light</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="header">
+      <div class="hgroup">
+        <div class="title" id="lessonTitle">—</div>
+        <div class="subtitle"><span id="meta">0 คำ-ประโยค • th-TH</span></div>
+        <div class="controls">
+          <button class="btn small" id="shuffle">สับลำดับ</button>
+          <button class="btn small" id="reset">รีเซ็ตลำดับ</button>
+          <button class="btn small" id="preview">ดูตัวอย่าง</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search">
+        <input id="filter" type="text" placeholder="ค้นหา…">
+        <span class="muted" id="count"></span>
+      </div>
+      <div>
+        <label class="pill">
+          <span id="lblVoice">เสียง</span>
+          <select id="voiceSel"><option value="">ค่าเริ่มต้น</option></select>
+        </label>
+        <label class="pill">
+          <span id="lblSpeed">ความเร็ว</span>
+          <span id="speedVal">1.0×</span>
+          <input id="speed" type="range" min="0.5" max="1.5" step="0.1" value="1.0">
+        </label>
+      </div>
+    </div>
+
+    <div class="table">
+      <div class="row header"><div>#</div><div>คำ/ประโยค (Prompt)</div><div class="lang">ภาษา</div></div>
+      <div id="rows"></div>
+    </div>
+  </main>
+
+  <footer class="bottom">
+    <div class="controls2">
+      <button class="btn small" id="backBtn">ย้อนกลับ</button>
+      <button class="btn small" id="speakBtn">พูด</button>
+      <button class="btn small" id="speakNextBtn">พูด + ถัดไป</button>
+      <button class="btn small" id="nextBtn">ถัดไป</button>
+    </div>
+    <div class="muted" id="nowPlaying">—</div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+<script>
+(function(){
+  // Built-ins (Thai titles)
+  const BUILTIN=[
+    {id:"builtin-th", title:"สนทนาพื้นฐานภาษาไทย (ผู้ชาย)", language:"th-TH", items:[
+      {prompt:"สวัสดีครับ"},{prompt:"ขอบคุณครับ"},{prompt:"ขอโทษครับ"},{prompt:"ช่วยด้วยครับ"},{prompt:"ผมเข้าใจแล้วครับ"}
+    ]},
+    {id:"builtin-en", title:"สนทนาพื้นฐานภาษาอังกฤษ", language:"en-US", items:[
+      {prompt:"Hello"},{prompt:"Thank you"},{prompt:"Sorry"},{prompt:"Please"},{prompt:"Nice to meet you"}
+    ]},
+    {id:"builtin-province", title:"รายชื่อจังหวัดของไทย", language:"th-TH", items:[
+      {prompt:"กรุงเทพมหานคร"},{prompt:"เชียงใหม่"},{prompt:"ภูเก็ต"},{prompt:"ขอนแก่น"},{prompt:"ชลบุรี"}
+    ]},
+  ];
+
+  const STR = {
+    th: { library:"คลังบทเรียน", add:"เพิ่มบทเรียน", iface:"ตั้งค่า", open:"เปิดไฟล์ YAML…", load:"โหลด",
+          search:"ค้นหา…", speed:"ความเร็ว", voice:"เสียง", words:"คำ-ประโยค", items:"คำ-ประโยค",
+          shuffle:"สับลำดับ", reset:"รีเซ็ตลำดับ", preview:"ดูตัวอย่าง", system:"ค่าเริ่มต้น",
+          now:"กำลังฝึก: " },
+    en: { library:"Library", add:"Add Lessons", iface:"Interface", open:"Open YAML…", load:"Load",
+          search:"Search…", speed:"Speed", voice:"Voice", words:"words-sentences", items:"words-sentences",
+          shuffle:"Shuffle", reset:"Reset order", preview:"Preview", system:"System",
+          now:"Now: " },
+  };
+
+  const K = { LIB:"aph:music2:lib", LAST:"aph:music2:last", PREF:"aph:music2:prefs", ORDER:(id)=>`aph:music2:o:${id}`, IDX:(id)=>`aph:music2:i:${id}` };
+  let prefs = loadJSON(K.PREF,{ uiLang:"th", rate:1.0, voiceName:"", theme:"dark" });
+  let library = loadJSON(K.LIB, null);
+  if (!library){ library = BUILTIN.map(l=>({ ...l, order: defaultOrder(l.items.length) })); saveJSON(K.LIB, library); }
+  let activeId = loadStr(K.LAST) || library[0].id;
+  let filterText = "";
+  let voices = [];
+
+  // DOM
+  const list = id("list"), lessonTitle=id("lessonTitle"), meta=id("meta"), rows=id("rows"), count=id("count");
+  const shuffleBtn=id("shuffle"), resetBtn=id("reset"), previewBtn=id("preview");
+  const filter=id("filter");
+  const pick=id("pick"), file=id("file"), url=id("url"), loadUrl=id("loadUrl");
+  const speakBtn=id("speakBtn"), speakNextBtn=id("speakNextBtn"), backBtn=id("backBtn"), nextBtn=id("nextBtn"), nowPlaying=id("nowPlaying");
+  const speed=id("speed"), speedVal=id("speedVal"), voiceSel=id("voiceSel");
+  const secLib=id("secLib"), secAdd=id("secAdd"), secInterface=id("secInterface"), brand=id("brand");
+  const langToggle=id("langToggle"), themeToggle=id("themeToggle");
+
+  // PWA: register service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+
+  // Init
+  applyTheme();
+  applyI18n();
+  renderSidebar();
+  renderCenter();
+  loadVoices();
+
+  // Events
+  // Language toggle
+  langToggle.querySelectorAll("button").forEach(btn=>{
+    btn.onclick=()=>{
+      prefs.uiLang = btn.dataset.lang;
+      langToggle.querySelectorAll("button").forEach(b=>b.classList.toggle("active", b===btn));
+      savePrefs(); applyI18n(); renderSidebar(); renderCenter();
+    };
+  });
+  // Theme toggle
+  themeToggle.querySelectorAll("button").forEach(btn=>{
+    btn.onclick=()=>{
+      prefs.theme = btn.dataset.theme;
+      themeToggle.querySelectorAll("button").forEach(b=>b.classList.toggle("active", b===btn));
+      savePrefs(); applyTheme();
+    };
+  });
+
+  pick.onclick=()=>file.click();
+  file.onchange=async(e)=>{ const f=e.target.files?.[0]; if(!f) return; const txt=await f.text(); addYaml(txt, f.name); };
+  loadUrl.onclick=async()=>{ const u=url.value.trim(); if(!u) return; try{ const txt=await fetch(u).then(r=>r.text()); addYaml(txt,u); }catch{ alert(prefs.uiLang==='th'?'โหลดล้มเหลว':'Load failed'); } };
+
+  speed.value = prefs.rate; speed.oninput=()=>{ prefs.rate=parseFloat(speed.value); speedVal.textContent=prefs.rate.toFixed(1)+"×"; savePrefs(); };
+  speedVal.textContent = prefs.rate.toFixed(1)+"×";
+  voiceSel.onchange=()=>{ prefs.voiceName=voiceSel.value; savePrefs(); };
+
+  filter.oninput=()=>{ filterText=filter.value.toLowerCase(); renderTracks(); };
+
+  backBtn.onclick = ()=>{ const a=active(); const i=getIdx(a.id); setIdx(a.id, Math.max(0,i-1)); renderCenter(); };
+  nextBtn.onclick = ()=>{ const a=active(); const i=getIdx(a.id); setIdx(a.id, Math.min(a.order.length-1,i+1)); renderCenter(); };
+  speakBtn.onclick = ()=> speakCurrent(false);
+  speakNextBtn.onclick = ()=> speakCurrent(true);
+
+  shuffleBtn.onclick=()=>{ const a=active(); a.order = shuffle(a.order.slice()); saveOrder(a.id,a.order); saveLibrary(); setIdx(a.id,0); renderCenter(); };
+  resetBtn.onclick=()=>{ const a=active(); a.order = defaultOrder(a.items.length); saveOrder(a.id,a.order); saveLibrary(); setIdx(a.id,0); renderCenter(); };
+  previewBtn.onclick=()=>{ const a=active(); const lines = a.items.slice(0,12).map((it,i)=>`${i+1}. ${it.prompt}`); alert(`${a.title} (ตัวอย่าง ${Math.min(12,a.items.length)}):\n\n${lines.join("\n")}`); };
+
+  function applyTheme(){
+    document.body.setAttribute("data-theme", prefs.theme === "light" ? "light" : "dark");
+    themeToggle.querySelectorAll("button").forEach(b=>b.classList.toggle("active", b.dataset.theme===prefs.theme));
+  }
+
+  function applyI18n(){
+    const T = STR[prefs.uiLang];
+    secLib.textContent = T.library;
+    secAdd.textContent = T.add;
+    secInterface.textContent = T.iface;
+    pick.textContent = T.open;
+    loadUrl.textContent = T.load;
+    filter.placeholder = prefs.uiLang==='th' ? "ค้นหา…" : "Search…";
+    id("lblVoice").textContent = T.voice;
+    id("lblSpeed").textContent = T.speed;
+    brand.textContent = prefs.uiLang==='th' ? "ฝึกพูดอะเฟเซีย" : "Aphasia Practice";
+  }
+
+  function renderSidebar(){
+    const T = STR[prefs.uiLang];
+    list.innerHTML = "";
+    const unit = T.items; // words-sentences / คำ-ประโยค
+    library.forEach(l => {
+      const div = document.createElement("div"); div.className = "lesson" + (l.id===activeId ? " active": "");
+      const meta = document.createElement("div"); meta.className="meta";
+      const t = document.createElement("div"); t.className="title"; t.textContent = l.title;
+      const s = document.createElement("div"); s.className="sub"; s.textContent = `${l.items.length} ${unit} • ${l.language}`;
+      meta.appendChild(t); meta.appendChild(s);
+      div.appendChild(meta);
+      div.onclick = () => { activeId = l.id; saveStr(K.LAST, activeId); renderSidebar(); renderCenter(); };
+      list.appendChild(div);
+    });
+  }
+
+  function renderCenter(){
+    const a = active();
+    const unit = STR[prefs.uiLang].items;
+    lessonTitle.textContent = a.title;
+    meta.textContent = `${a.items.length} ${unit} • ${a.language}`;
+    renderVoiceOptions();
+    renderTracks();
+    updateNowPlaying();
+  }
+
+  function renderTracks(){
+    const a = active();
+    const q = filterText;
+    rows.innerHTML = "";
+    const filtered = a.order.filter(i => {
+      const it = a.items[i];
+      return !q || (it.prompt && it.prompt.toLowerCase().includes(q));
+    });
+    let idxDisplay = 1;
+    filtered.forEach((i) => {
+      const it = a.items[i];
+      const r = document.createElement("div"); r.className="row item";
+      const c1 = document.createElement("div"); c1.className="idx"; c1.textContent = String(idxDisplay++);
+      const c2 = document.createElement("div"); c2.className="prompt"; c2.textContent = it.prompt || "";
+      const c3 = document.createElement("div"); c3.className="lang"; c3.textContent = a.language;
+      r.appendChild(c1); r.appendChild(c2); r.appendChild(c3);
+      r.onclick = () => { const pos = a.order.indexOf(i); setIdx(a.id, pos >= 0 ? pos : 0); updateNowPlaying(); highlightActive(); };
+      rows.appendChild(r);
+    });
+    count.textContent = `${filtered.length}/${a.items.length}`;
+    highlightActive();
+  }
+
+  function highlightActive(){
+    const a = active(); const i = getIdx(a.id); const targetIdx = a.order[i];
+    [...rows.children].forEach((row) => row.classList.remove("active"));
+    const it = a.items[targetIdx]; let toActivate = null;
+    [...rows.children].some((row) => { const text = row.children[1].textContent; if (text === (it.prompt||"")) { toActivate=row; return true;} return false; });
+    if (toActivate) toActivate.classList.add("active");
+  }
+
+  function updateNowPlaying(){
+    const a = active(); const i = getIdx(a.id); const it = a.items[a.order[i]];
+    nowPlaying.textContent = it ? (STR[prefs.uiLang].now + it.prompt) : "—";
+  }
+
+  function addYaml(txt, name){
+    const parsed = parseYaml(txt); if (!parsed) return;
+    const { course, items } = parsed;
+    const id = course.id || ("lesson-" + Math.random().toString(36).slice(2,9));
+    const title = course.title || name || "(Untitled)";
+    const language = course.language || "th-TH";
+    const lesson = { id, title, language, items, order: defaultOrder(items.length) };
+    const idx = library.findIndex(l => l.id === id);
+    if (idx>=0) library[idx] = lesson; else library.push(lesson);
+    saveLibrary(); activeId = id; saveStr(K.LAST, activeId);
+    renderSidebar(); renderCenter();
+  }
+
+  function parseYaml(txt){
+    try{ var doc = jsyaml.load(txt); } catch(e){ alert((prefs.uiLang==='th'?'YAML ไม่ถูกต้อง: ':'Invalid YAML: ')+ e.message); return null; }
+    const course = doc.course || {}; const items = Array.isArray(doc.items) ? doc.items : [];
+    if (!items.length){ alert(prefs.uiLang==='th'?'ไม่พบรายการใน YAML':'No items found in YAML.'); return null; }
+    // Only 'prompt' is used; hint removed.
+    const norm = items.map((it,i)=>({ prompt:String(it.prompt||"").trim(), audio:it.audio||null })).filter(it=>it.prompt);
+    return { course, items: norm };
+  }
+
+  function speakCurrent(andNext){
+    const a = active(); const i = getIdx(a.id); const it = a.items[a.order[i]];
+    if (!it) return;
+    try{ speechSynthesis.cancel(); }catch{}
+    const u = new SpeechSynthesisUtterance(it.prompt||"");
+    const v = voices.find(v => v.name === prefs.voiceName) ||
+              voices.find(v => v.lang && v.lang.toLowerCase().startsWith(a.language.toLowerCase().slice(0,2))) ||
+              voices[0];
+    if (v) u.voice = v; u.lang = (v && v.lang) || a.language; u.rate = Math.max(0.5, Math.min(1.5, prefs.rate));
+    if (andNext){
+      u.onend = () => { const cur = getIdx(a.id); setIdx(a.id, Math.min(a.order.length-1, cur+1)); renderCenter(); };
+    }
+    speechSynthesis.speak(u);
+  }
+
+  function loadVoices(){
+    try{ voices = speechSynthesis.getVoices() || []; }catch{ voices = []; }
+    if (window.speechSynthesis){ window.speechSynthesis.onvoiceschanged = ()=>{ voices = speechSynthesis.getVoices() || []; renderVoiceOptions(); }; }
+  }
+
+  function renderVoiceOptions(){
+    const T = STR[prefs.uiLang];
+    voiceSel.innerHTML = `<option value="">${T.system}</option>`;
+    const a = active();
+    voices.filter(v => (v.lang||"").toLowerCase().startsWith(a.language.toLowerCase().slice(0,2))).forEach(v => {
+      const opt = document.createElement("option"); opt.value = v.name; opt.textContent = `${v.name} (${v.lang})`;
+      if (prefs.voiceName === v.name) opt.selected = true;
+      voiceSel.appendChild(opt);
+    });
+  }
+
+  // Storage helpers
+  function loadJSON(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch{ return d } }
+  function saveJSON(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch{} }
+  function loadStr(k){ try{ return localStorage.getItem(k) || ""; }catch{ return "" } }
+  function saveStr(k, v){ try{ localStorage.setItem(k, v); }catch{} }
+  function savePrefs(){ saveJSON(K.PREF, prefs); }
+  function saveLibrary(){ saveJSON(K.LIB, library); }
+
+  // Helpers
+  function active(){ return library.find(l => l.id === activeId) || library[0]; }
+  function defaultOrder(n){ return Array.from({length:n}, (_,i)=>i); }
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]]; } return a; }
+  function getIdx(id){ const v = parseInt(loadStr(K.IDX(id))||"0",10); return Number.isFinite(v) ? v : 0; }
+  function setIdx(id, v){ saveStr(K.IDX(id), String(v)); }
+  function id(x){ return document.getElementById(x); }
+})();
+</script>
+</body>
+</html>
