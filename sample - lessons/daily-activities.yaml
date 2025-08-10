@@ -1,0 +1,165 @@
+course:
+  id: "thai-daily-activities"
+  title: "กิจวัตรประจำวัน"
+  language: "th-TH"
+items:
+  - id: "a001"
+    type: "phrase"
+    prompt: "ตื่น"
+    audio: null
+  - id: "a002"
+    type: "phrase"
+    prompt: "ตื่นนอน"
+    audio: null
+  - id: "a003"
+    type: "phrase"
+    prompt: "ล้างหน้า"
+    audio: null
+  - id: "a004"
+    type: "phrase"
+    prompt: "แปรงฟัน"
+    audio: null
+  - id: "a005"
+    type: "phrase"
+    prompt: "อาบน้ำ"
+    audio: null
+  - id: "a006"
+    type: "phrase"
+    prompt: "เช็ดตัว"
+    audio: null
+  - id: "a007"
+    type: "phrase"
+    prompt: "แต่งตัว"
+    audio: null
+  - id: "a008"
+    type: "phrase"
+    prompt: "กิน"
+    audio: null
+  - id: "a009"
+    type: "phrase"
+    prompt: "กินข้าว"
+    audio: null
+  - id: "a010"
+    type: "phrase"
+    prompt: "กินข้าวเช้า"
+    audio: null
+  - id: "a011"
+    type: "phrase"
+    prompt: "ดื่มน้ำ"
+    audio: null
+  - id: "a012"
+    type: "phrase"
+    prompt: "ดื่มกาแฟ"
+    audio: null
+  - id: "a013"
+    type: "phrase"
+    prompt: "ไป"
+    audio: null
+  - id: "a014"
+    type: "phrase"
+    prompt: "ไปทำงาน"
+    audio: null
+  - id: "a015"
+    type: "phrase"
+    prompt: "ไปโรงเรียน"
+    audio: null
+  - id: "a016"
+    type: "phrase"
+    prompt: "อ่าน"
+    audio: null
+  - id: "a017"
+    type: "phrase"
+    prompt: "อ่านหนังสือ"
+    audio: null
+  - id: "a018"
+    type: "phrase"
+    prompt: "เขียน"
+    audio: null
+  - id: "a019"
+    type: "phrase"
+    prompt: "เขียนหนังสือ"
+    audio: null
+  - id: "a020"
+    type: "phrase"
+    prompt: "ทำ"
+    audio: null
+  - id: "a021"
+    type: "phrase"
+    prompt: "ทำงาน"
+    audio: null
+  - id: "a022"
+    type: "phrase"
+    prompt: "ทำการบ้าน"
+    audio: null
+  - id: "a023"
+    type: "phrase"
+    prompt: "เล่น"
+    audio: null
+  - id: "a024"
+    type: "phrase"
+    prompt: "เล่นกีฬา"
+    audio: null
+  - id: "a025"
+    type: "phrase"
+    prompt: "ทำอาหาร"
+    audio: null
+  - id: "a026"
+    type: "phrase"
+    prompt: "ล้างจาน"
+    audio: null
+  - id: "a027"
+    type: "phrase"
+    prompt: "ซักผ้า"
+    audio: null
+  - id: "a028"
+    type: "phrase"
+    prompt: "เก็บห้อง"
+    audio: null
+  - id: "a029"
+    type: "phrase"
+    prompt: "อาบน้ำเย็น"
+    audio: null
+  - id: "a030"
+    type: "phrase"
+    prompt: "นอน"
+    audio: null
+  - id: "a031"
+    type: "phrase"
+    prompt: "นอนหลับ"
+    audio: null
+  - id: "a032"
+    type: "phrase"
+    prompt: "ปิดไฟ"
+    audio: null
+  - id: "a033"
+    type: "phrase"
+    prompt: "ปิดประตู"
+    audio: null
+  - id: "a034"
+    type: "phrase"
+    prompt: "เปิดไฟ"
+    audio: null
+  - id: "a035"
+    type: "phrase"
+    prompt: "เปิดประตู"
+    audio: null
+  - id: "a036"
+    type: "phrase"
+    prompt: "ออกกำลังกาย"
+    audio: null
+  - id: "a037"
+    type: "phrase"
+    prompt: "ยืดเส้น"
+    audio: null
+  - id: "a038"
+    type: "phrase"
+    prompt: "ยืดเส้นยืดสาย"
+    audio: null
+  - id: "a039"
+    type: "phrase"
+    prompt: "พัก"
+    audio: null
+  - id: "a040"
+    type: "phrase"
+    prompt: "พักผ่อน"
+    audio: null

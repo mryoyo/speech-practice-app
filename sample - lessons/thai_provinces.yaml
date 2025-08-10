@@ -1,0 +1,309 @@
+course:
+  id: "thai-provinces"
+  title: "รายชื่อจังหวัดในประเทศไทย"
+  language: "th-TH"
+items:
+  - id: "t001"
+    type: "phrase"
+    prompt: "กรุงเทพมหานคร"
+    audio: null
+  - id: "t002"
+    type: "phrase"
+    prompt: "กระบี่"
+    audio: null
+  - id: "t003"
+    type: "phrase"
+    prompt: "กาญจนบุรี"
+    audio: null
+  - id: "t004"
+    type: "phrase"
+    prompt: "กาฬสินธุ์"
+    audio: null
+  - id: "t005"
+    type: "phrase"
+    prompt: "กำแพงเพชร"
+    audio: null
+  - id: "t006"
+    type: "phrase"
+    prompt: "ขอนแก่น"
+    audio: null
+  - id: "t007"
+    type: "phrase"
+    prompt: "จันทบุรี"
+    audio: null
+  - id: "t008"
+    type: "phrase"
+    prompt: "ฉะเชิงเทรา"
+    audio: null
+  - id: "t009"
+    type: "phrase"
+    prompt: "ชลบุรี"
+    audio: null
+  - id: "t010"
+    type: "phrase"
+    prompt: "ชัยนาท"
+    audio: null
+  - id: "t011"
+    type: "phrase"
+    prompt: "ชัยภูมิ"
+    audio: null
+  - id: "t012"
+    type: "phrase"
+    prompt: "ชุมพร"
+    audio: null
+  - id: "t013"
+    type: "phrase"
+    prompt: "เชียงราย"
+    audio: null
+  - id: "t014"
+    type: "phrase"
+    prompt: "เชียงใหม่"
+    audio: null
+  - id: "t015"
+    type: "phrase"
+    prompt: "ตรัง"
+    audio: null
+  - id: "t016"
+    type: "phrase"
+    prompt: "ตราด"
+    audio: null
+  - id: "t017"
+    type: "phrase"
+    prompt: "ตาก"
+    audio: null
+  - id: "t018"
+    type: "phrase"
+    prompt: "นครนายก"
+    audio: null
+  - id: "t019"
+    type: "phrase"
+    prompt: "นครปฐม"
+    audio: null
+  - id: "t020"
+    type: "phrase"
+    prompt: "นครพนม"
+    audio: null
+  - id: "t021"
+    type: "phrase"
+    prompt: "นครราชสีมา"
+    audio: null
+  - id: "t022"
+    type: "phrase"
+    prompt: "นครศรีธรรมราช"
+    audio: null
+  - id: "t023"
+    type: "phrase"
+    prompt: "นครสวรรค์"
+    audio: null
+  - id: "t024"
+    type: "phrase"
+    prompt: "นราธิวาส"
+    audio: null
+  - id: "t025"
+    type: "phrase"
+    prompt: "น่าน"
+    audio: null
+  - id: "t026"
+    type: "phrase"
+    prompt: "บึงกาฬ"
+    audio: null
+  - id: "t027"
+    type: "phrase"
+    prompt: "บุรีรัมย์"
+    audio: null
+  - id: "t028"
+    type: "phrase"
+    prompt: "ปทุมธานี"
+    audio: null
+  - id: "t029"
+    type: "phrase"
+    prompt: "ประจวบคีรีขันธ์"
+    audio: null
+  - id: "t030"
+    type: "phrase"
+    prompt: "ปราจีนบุรี"
+    audio: null
+  - id: "t031"
+    type: "phrase"
+    prompt: "ปัตตานี"
+    audio: null
+  - id: "t032"
+    type: "phrase"
+    prompt: "พระนครศรีอยุธยา"
+    audio: null
+  - id: "t033"
+    type: "phrase"
+    prompt: "พังงา"
+    audio: null
+  - id: "t034"
+    type: "phrase"
+    prompt: "พัทลุง"
+    audio: null
+  - id: "t035"
+    type: "phrase"
+    prompt: "พิจิตร"
+    audio: null
+  - id: "t036"
+    type: "phrase"
+    prompt: "พิษณุโลก"
+    audio: null
+  - id: "t037"
+    type: "phrase"
+    prompt: "เพชรบุรี"
+    audio: null
+  - id: "t038"
+    type: "phrase"
+    prompt: "เพชรบูรณ์"
+    audio: null
+  - id: "t039"
+    type: "phrase"
+    prompt: "แพร่"
+    audio: null
+  - id: "t040"
+    type: "phrase"
+    prompt: "พะเยา"
+    audio: null
+  - id: "t041"
+    type: "phrase"
+    prompt: "ภูเก็ต"
+    audio: null
+  - id: "t042"
+    type: "phrase"
+    prompt: "มหาสารคาม"
+    audio: null
+  - id: "t043"
+    type: "phrase"
+    prompt: "มุกดาหาร"
+    audio: null
+  - id: "t044"
+    type: "phrase"
+    prompt: "แม่ฮ่องสอน"
+    audio: null
+  - id: "t045"
+    type: "phrase"
+    prompt: "ยโสธร"
+    audio: null
+  - id: "t046"
+    type: "phrase"
+    prompt: "ยะลา"
+    audio: null
+  - id: "t047"
+    type: "phrase"
+    prompt: "ร้อยเอ็ด"
+    audio: null
+  - id: "t048"
+    type: "phrase"
+    prompt: "ระนอง"
+    audio: null
+  - id: "t049"
+    type: "phrase"
+    prompt: "ระยอง"
+    audio: null
+  - id: "t050"
+    type: "phrase"
+    prompt: "ราชบุรี"
+    audio: null
+  - id: "t051"
+    type: "phrase"
+    prompt: "ลพบุรี"
+    audio: null
+  - id: "t052"
+    type: "phrase"
+    prompt: "ลำปาง"
+    audio: null
+  - id: "t053"
+    type: "phrase"
+    prompt: "ลำพูน"
+    audio: null
+  - id: "t054"
+    type: "phrase"
+    prompt: "เลย"
+    audio: null
+  - id: "t055"
+    type: "phrase"
+    prompt: "ศรีสะเกษ"
+    audio: null
+  - id: "t056"
+    type: "phrase"
+    prompt: "สกลนคร"
+    audio: null
+  - id: "t057"
+    type: "phrase"
+    prompt: "สงขลา"
+    audio: null
+  - id: "t058"
+    type: "phrase"
+    prompt: "สตูล"
+    audio: null
+  - id: "t059"
+    type: "phrase"
+    prompt: "สมุทรปราการ"
+    audio: null
+  - id: "t060"
+    type: "phrase"
+    prompt: "สมุทรสงคราม"
+    audio: null
+  - id: "t061"
+    type: "phrase"
+    prompt: "สมุทรสาคร"
+    audio: null
+  - id: "t062"
+    type: "phrase"
+    prompt: "สระแก้ว"
+    audio: null
+  - id: "t063"
+    type: "phrase"
+    prompt: "สระบุรี"
+    audio: null
+  - id: "t064"
+    type: "phrase"
+    prompt: "สิงห์บุรี"
+    audio: null
+  - id: "t065"
+    type: "phrase"
+    prompt: "สุโขทัย"
+    audio: null
+  - id: "t066"
+    type: "phrase"
+    prompt: "สุพรรณบุรี"
+    audio: null
+  - id: "t067"
+    type: "phrase"
+    prompt: "สุราษฎร์ธานี"
+    audio: null
+  - id: "t068"
+    type: "phrase"
+    prompt: "สุรินทร์"
+    audio: null
+  - id: "t069"
+    type: "phrase"
+    prompt: "หนองคาย"
+    audio: null
+  - id: "t070"
+    type: "phrase"
+    prompt: "หนองบัวลำภู"
+    audio: null
+  - id: "t071"
+    type: "phrase"
+    prompt: "อ่างทอง"
+    audio: null
+  - id: "t072"
+    type: "phrase"
+    prompt: "อำนาจเจริญ"
+    audio: null
+  - id: "t073"
+    type: "phrase"
+    prompt: "อุดรธานี"
+    audio: null
+  - id: "t074"
+    type: "phrase"
+    prompt: "อุตรดิตถ์"
+    audio: null
+  - id: "t075"
+    type: "phrase"
+    prompt: "อุทัยธานี"
+    audio: null
+  - id: "t076"
+    type: "phrase"
+    prompt: "อุบลราชธานี"
+    audio: null
